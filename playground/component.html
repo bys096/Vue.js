@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://unpkg.com/vue@2.6.14/dist/vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <app-header></app-header>
+    <app-footer></app-footer>
+  </div>
+
+  <div id="app2">
+    <app-header></app-header>
+    <app-footer></app-footer>
+  </div>
+
+  <script>
+    // 전역 컴포넌트 등록 방식
+    // 플러그인이나, 라이브러리와 같은 전역으로 사용해야 할 때 거의 사용한다.
+    // Vue.component('컴포넌트 이름', 컴포넌트 내용);
+    Vue.component('app-header', {
+      // template: component가 표현되는 마크업이나 스타일을 의미. 쉽게 얘기해서 안에 html이 들어간다 생각하면 된다.
+      template: '<h1>Header</h1>',
+    });
+
+    new Vue({
+      el: '#app',
+      // 지역 컴포넌트 등록 방식
+      // 특정 컴포넌트 하단에 어떤 컴포넌트가 등록돼있는지 알 수 있다
+      components : {
+        // '컴포넌트 이름' : 컴포턴트 내용
+        'app-footer' : {
+          template : '<footer>footer</footer>'
+        }
+      }
+    });
+
+    new Vue({
+      el: '#app2',
+      components: {
+        'app-footer' : {
+          template :'<strong>footer2</strong>'
+        }
+      }
+    });
+  </script>
+</body>
+</html>
